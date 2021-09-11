@@ -1,0 +1,35 @@
+<% if @user.errors.any? %>
+  <div style ='color:red'>
+  <h3><%= @user.errors.count %> errors prohibited this obj from being saved:</h3>
+  <ul style ='color:red'>
+  <% @user.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+  </ul>
+  </div>
+<% end %>
+
+<div class="container">
+<div class="row">
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    
+
+<%= form_with model: @user, url: user_path, local:true do |book| %>
+<div class="text-center">
+  
+  <h2>User info</h2>
+
+  <h4>name</h4>
+  <%= book.text_field :name %>
+
+  <h4>image</h4>
+  <%= book.attachment_field :profile_image %>
+
+  <h4>Introduction</h4>
+  <%= book.text_area :introduction %>
+  <%= book.submit "Update User", class: "btn btn-secondary" %>
+  
+</div>
+
+
+<% end %>
